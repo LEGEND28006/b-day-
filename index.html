@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Journey Through Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet">
+  <style>
+    body.dark-mode .final-message {
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode .gift-section {
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode #giftContent {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: url('https://www.transparenttextures.com/patterns/soft-wallpaper.png'), linear-gradient(270deg, #fff1f7, #e5f6ff, #ffe0ec);
+      background-blend-mode: overlay;
+      background-size: cover, 600% 600%;
+      animation: bgMove 30s ease infinite;
+      color: #333;
+      overflow-x: hidden;
+      cursor: url('https://cur.cursors-4u.net/symbols/sym-2/sym106.cur'), auto;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom right, #ffdee9, #b5fffc);
+      text-align: center;
+      flex-direction: column;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    header h1 {
+      font-size: 3em;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(to right, #ff6f91, #b5fffc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+    }
+
+    header button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1.1em;
+      border: none;
+      background-color: #ff6f91;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header button:hover {
+      background-color: #ff3f71;
+      transform: scale(1.05);
+    }
+
+    .timeline {
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .moment {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 80px;
+      gap: 20px;
+    }
+
+    .moment img, .moment .text {
+      flex: 1 1 45%;
+    }
+
+    .moment.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .moment h2 {
+      color: #ff6f91;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+
+    .moment p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .moment img {
+      width: 100%;
+      max-height: 350px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .moment:nth-child(1) img { transform: rotate(-2deg); }
+    .moment:nth-child(2) img { transform: rotate(3deg); }
+    .moment:nth-child(3) img { transform: rotate(-3deg); }
+    .moment:nth-child(4) img { transform: rotate(2deg); }
+    .moment:nth-child(5) img { transform: rotate(-2.5deg); }
+
+    .final-message {
+      background: #ffe0ec;
+      padding: 80px 20px;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .final-message h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4em;
+      color: #d1497f;
+      margin-bottom: 30px;
+    }
+
+    .final-message p {
+      max-width: 750px;
+      margin: auto;
+      font-size: 1.3em;
+      line-height: 1.8;
+    }
+
+    /* 🎁 Gift Section */
+    .gift-section {
+      background: #fff0f5;
+      padding: 80px 20px;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .gift-section h2 {
+      font-size: 2em;
+      color: #d1497f;
+      margin-bottom: 20px;
+    }
+
+    #unwrapBtn {
+      font-size: 1.2em;
+      padding: 12px 24px;
+      background: #ff6f91;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    #unwrapBtn:hover {
+      transform: scale(1.05);
+      background: #ff3f71;
+    }
+
+    #giftContent {
+      margin-top: 30px;
+      padding: 20px;
+      background: #ffe4ec;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: none;
+    }
+
+    #giftContent.show {
+      display: block;
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background: #121212;
+      color: #eee;
+    }
+
+    body.dark-mode header {
+      background: linear-gradient(to bottom right, #333, #444);
+    }
+
+    body.dark-mode .final-message {
+      background: #222;
+    }
+
+    body.dark-mode header h1 {
+      background: linear-gradient(to right, #ff59ba, #520b71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    body.dark-mode .toggle-btn {
+      background: #444;
+      color: #fff;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      z-index: 1000;
+      top: 20px;
+      right: 20px;
+      padding: 10px 14px;
+      font-size: 1.2em;
+      background: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2em;
+        padding: 0 10px;
+      }
+
+      header button {
+        font-size: 1em;
+        padding: 10px 20px;
+      }
+
+      .moment {
+        flex-direction: column !important;
+      }
+
+      .moment img, .moment .text {
+        flex: 1 1 100%;
+      }
+
+      .final-message h2 {
+        font-size: 1.8em;
+      }
+
+      .final-message p {
+        font-size: 1.1em;
+        padding: 0 10px;
+      }
+
+      .toggle-btn {
+        top: 10px;
+        right: 10px;
+        font-size: 1em;
+        padding: 8px 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <button class="toggle-btn" onclick="toggleDark()">🌓</button>
+
+  <audio id="bgMusic" loop>
+    <source src="audio/Finding Her - Kushagra 320 Kbps.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <header>
+    <h1>Happy Birthday, Best buddy 💖</h1>
+    <button onclick="scrollToTimeline()">Take a Journey With Me</button>
+  </header>
+
+  <section class="timeline" id="timeline">
+    <div class="moment">
+      <img src="image/IMG_5955.PNG" alt="The day we met">
+      <div class="text">
+        <h2>The Day We Met</h2>
+        <p>Our meetup was very random , that day when we met for first time on traditional day , i never thought we would be friends like this and none off us imagine to have much fun together , go to cafes , teasing each other and many more things .   </p>
+      </div>
+    </div>
+    <div class="moment reverse">
+      <img src="image/Screenshot_18-5-2025_224357_www.instagram.com.jpeg" alt="Late night talks">
+      <div class="text">
+        <h2>Strong girl i met</h2>
+        <p>You are stronger than you think.you live in this big city on your own , I see it in the way you handle all things, how you keep going even when it feels hard. You don’t give up. You care deeply, you try your best, and you keep moving forward. That takes real strength. Even when you feel tired , you still show up. That’s what makes you amazing. Don’t forget how far you’ve come. You’ve made it through so much. keep it up bro.
+
+</p>
+      </div>
+    </div>
+    <div class="moment">
+      <img src="image/Screenshot_18-5-2025_224412_www.instagram.com.jpeg" alt="Stronger days">
+      <div class="text">
+        <h2>memories</h2>
+        <p>We laughed a lot,you used to hit me on small funny things , and made the great memories. Going to CAFE after clg , hit different , Just sitting there, sharing food and stories , is something which i can never forgot.</p>
+      </div>
+    </div>
+    <div class="moment reverse">
+      <img src="image/IMG_5960.PNG" alt="Memories">
+      <div class="text">
+        <h2>Your anger</h2>
+        <p>You know what’s actually scary? Your face when I say something stupid 😂. One second we were laughing, the next you are giving me the look 😳. And I already know I messed up. But somehow, even your anger is funny because five minutes later, you rre back to being sweet or pretending not to laugh at my jokes 🤭😂. i am just the clueless person getting roasted 🤣🔥.</p>
+      </div>
+    </div>
+    <div class="moment">
+      <img src="image/IMG_5959.PNG" alt="Special day">
+      <div class="text">
+        <h2>Today, and Always</h2>
+        <p>i am very happy to have you as my frd today and always . </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-message">
+    <h2>To My Best Friend</h2>
+    <p>
+     Ummmmm i cant do much but this was my little try or you can call tribut to our frndship . I hope your day is full of laughter, good vibes, and all the things you love. You deserve a fun, relaxing, and unforgettable day. and also hope that your upcoming days will be more brighter and i know you will definetly grow like this . HAPPY BIRTHDAY TO THE MOST INCREDIBLE PERSON  🎁✨🎊🎉🎂
+  </section>
+
+  <section class="gift-section">
+    <h2>🎁 A Little Surprise Awaits</h2>
+    <button id="unwrapBtn">Click to Unwrap</button>
+
+    <div id="giftContent">
+      <h3> You Found It!</h3>
+      <p>you can get as much chocolate as you want until gtu exam ends🎉</p>
+    </div>
+  </section>
+
+  <script>
+    const music = document.getElementById("bgMusic");
+    let playing = false;
+
+    function scrollToTimeline() {
+      document.getElementById('timeline').scrollIntoView({ behavior: 'smooth' });
+
+      if (!playing) {
+        music.play();
+        playing = true;
+      }
+    }
+
+    function toggleDark() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    // Unwrap gift script
+    document.getElementById("unwrapBtn").addEventListener("click", function () {
+      document.getElementById("giftContent").classList.add("show");
+      this.style.display = "none";
+    });
+  </script>
+</body>
+</html>
